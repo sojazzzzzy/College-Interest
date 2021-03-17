@@ -20,7 +20,10 @@ app.get('/colleges', (req, res)=>{
 	// this route will show the information of just one of the items in the list
 
 app.get('/colleges/:indexOfCollegesArray', (req, res)=>{
-	res.send(colleges[req.params.indexOfCollegesArray])
+	//res.send(colleges[req.params.indexOfCollegesArray])
+	res.render('show.ejs', {
+		college: colleges[req.params.indexOfCollegesArray]
+	})
 })
 
 
