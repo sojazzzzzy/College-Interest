@@ -15,10 +15,13 @@ app.get('/colleges', (req, res)=>{
 	res.render('index.ejs', {
 		allColleges: colleges
 	})
-
-	//res.send(colleges)
 })
 
+// SET UP NEW ROUTE
+	// this route will send us to a page that will allow us to create a new college using a form
+app.get('/colleges/new', (req, res)=>{
+	res.render('new.ejs')
+})
 
 // SET UP SHOW ROUTE
 	// this route will show the information of just one of the items in the list
