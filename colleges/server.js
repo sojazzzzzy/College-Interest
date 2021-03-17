@@ -12,7 +12,11 @@ console.log(colleges)
 	// this route will display a list of the colleges in the array
 
 app.get('/colleges', (req, res)=>{
-	res.send(colleges)
+	res.render('index.ejs', {
+		allColleges: colleges
+	})
+
+	//res.send(colleges)
 })
 
 

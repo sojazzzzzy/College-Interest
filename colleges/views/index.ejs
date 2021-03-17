@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Fruits Index</title>
+  </head>
+  <body>
+    <h1>College Index Page</h1>
+    <ul>
+      <% for (let i = 0; i < allColleges.length; i++) { %>
+      <li>
+        <a href="/colleges/<%=i%>">
+          <%=allColleges[i].name%>
+        </a>
+      </li>
+      <% } %>
+    </ul>
+  </body>
+</html>
+
