@@ -5,6 +5,11 @@ const app = express();
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
+// METHOD OVERRIDE
+
+const methodOverride = require('method-override')
+app.use(methodOverride('_method'))
+
 // REQUIRED!!!!!
 
 const colleges = require('./models/colleges.js')
@@ -33,6 +38,19 @@ app.post('/colleges', (req, res)=>{
 	res.redirect('/colleges')
 })
 
+// SET UP DELETE ROUTE
+app.delete('/colleges/:indexOfCollegesArray', (req, res)=>{
+	colleges.findByIdAndRemove(req.params.indexOfCollegesArray, (err, data)=>{
+		if (err) {
+			console.log(err)
+		} else {
+			console.log(data)
+			res.redirect('/colleges')
+		}
+	})
+	//res.redirect('/colleges')
+})
+
 // SET UP SHOW ROUTE
 	// this route will show the information of just one of the items in the list
 
@@ -42,7 +60,6 @@ app.get('/colleges/:indexOfCollegesArray', (req, res)=>{
 		college: colleges[req.params.indexOfCollegesArray]
 	})
 })
-
 
 
 

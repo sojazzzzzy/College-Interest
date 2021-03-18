@@ -2,22 +2,26 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8" />
-    <title>Fruits Index</title>
+    <title>College Index</title>
   </head>
   <body>
     <h1>College Index Page</h1>
+    <nav>
+      <a href="/colleges/new">Add a New College to Your List</a>
+    </nav>
     <ul>
-      <% for (let i = 0; i < allColleges.length; i++) { %>
-      <li>
-        <a href="/colleges/<%=i%>">
-          <%=allColleges[i].name%>
-        </a>
-      </li>
+      <% for(let i = 0; i < college.length; i++) { %>
+        <li>
+          <a href="/colleges/<%colleges[i].indexOfCollegesArray%>"> <%= colleges[i].name %></a>
+          <form method="POST" action="/colleges/<%= colleges[i].indexOfCollegesArray %>?_method=DELETE">
+            <button>Delete</button>
+          </form>
+        </li>
       <% } %>
-    </ul>
+        
   </body>
 </html>
 
-<nav><a href="/colleges/new">Add a New College to Your List</a></nav>
+
 
 <%- include('./partials/footer.ejs') %>
