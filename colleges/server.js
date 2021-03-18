@@ -25,6 +25,14 @@ app.get('/colleges/new', (req, res)=>{
 	res.render('new.ejs')
 })
 
+// SET UP CREATE ROUTE
+	// this route will allow us to push the new college into the list!
+app.post('/colleges', (req, res)=>{
+	console.log(req.body)
+	colleges.push(req.body)
+	res.redirect('/colleges')
+})
+
 // SET UP SHOW ROUTE
 	// this route will show the information of just one of the items in the list
 
