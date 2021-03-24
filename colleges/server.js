@@ -11,7 +11,7 @@ const methodOverride = require('method-override')
 app.use(methodOverride('_method'))
 
 
-// MONGO/MONGOOSE
+// MONGO/MONGOOSE DATABASE
 
 const mongoose = require('mongoose')
 

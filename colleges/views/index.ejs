@@ -10,10 +10,10 @@
       <a href="/colleges/new">Add a New College to Your List</a>
     </nav>
     <ul>
-      <% for(let i = 0; i < college.length; i++) { %>
+      <% for(let i = 0; i < allColleges.length; i++) { %>
         <li>
-          <a href="/colleges/<%colleges[i].indexOfCollegesArray%>"> <%= colleges[i].name %></a>
-          <form method="POST" action="/colleges/<%= colleges[i].indexOfCollegesArray %>?_method=DELETE">
+          <a href="/colleges/<%allColleges[i].indexOfCollegesArray%>"> <%= allColleges[i].name %></a>
+          <form method="POST" action="/colleges/<%= allColleges[i].indexOfCollegesArray %>?_method=DELETE">
             <button>Delete</button>
           </form>
         </li>
