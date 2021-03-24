@@ -98,7 +98,7 @@ router.post('/', (req, res) => {
 
 
 // SET UP DELETE ROUTE
-app.delete('/colleges/:indexOfCollegesArray', (req, res)=>{
+router.delete('/colleges/:indexOfCollegesArray', (req, res)=>{
 	Colleges.findByIdAndRemove(req.params.indexOfCollegesArray, (err, data)=>{
 		if (err) {
 			console.log(err)

@@ -1,26 +1,26 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8" />
     <title>College Index</title>
-  </head>
-  <body>
+  </head> -->
+  <main>
     <h1>College Index Page</h1>
     <nav>
       <a href="/colleges/new">Add a New College to Your List</a>
     </nav>
     <ul>
-      <% for(let i = 0; i < allColleges.length; i++) { %>
+      <% for(let i = 0; i < colleges.length; i++) { %>
         <li>
-          <a href="/colleges/<%allColleges[i].indexOfCollegesArray%>"> <%= allColleges[i].name %></a>
-          <form method="POST" action="/colleges/<%= allColleges[i].indexOfCollegesArray %>?_method=DELETE">
+          <a href="/colleges/<%colleges[i].indexOfCollegesArray%>"> <%= colleges[i].name %></a>
+          <form method="POST" action="/colleges/<%= colleges[i].indexOfCollegesArray %>?_method=DELETE">
             <button>Delete</button>
           </form>
         </li>
       <% } %>
         
-  </body>
-</html>
+  </main>
+<!-- </html> -->
 
 
 
