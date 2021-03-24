@@ -10,6 +10,29 @@ app.use(express.urlencoded({extended: true}))
 const methodOverride = require('method-override')
 app.use(methodOverride('_method'))
 
+
+// MONGO/MONGOOSE
+
+const mongoose = require('mongoose')
+
+const mongoURI = 'mongodb://127.0.0.1:27017/collegeapp'
+
+const db = mongoose.connection
+
+mongoose.connect(mongoURI, {
+	useFindAndModify: false,
+	useNewUrlParser: true,
+	useUnifiedTopology: true
+}, ()=>{
+	console.log(`database connection checked`)
+})
+
+db.on('error', (err)=>{ console.log(`ERROR: `, err)})
+db.on('connected', ()=>{console.log(`mongo connected`)})
+db.on('disconnected', ()=>{console.log(`mongo disconnected`)})
+
+
+
 // REQUIRED!!!!!
 
 const colleges = require('./models/colleges.js')
