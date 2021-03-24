@@ -1,6 +1,11 @@
 const express = require('express');
 const app = express();
 
+// REQUIRED!!!!!
+
+const colleges = require('./models/colleges.js')
+console.log(colleges)
+
 // HAVE FORM SUBMIT TO SERVER
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
@@ -33,10 +38,20 @@ db.on('disconnected', ()=>{console.log(`mongo disconnected`)})
 
 
 
-// REQUIRED!!!!!
 
-const colleges = require('./models/colleges.js')
-console.log(colleges)
+
+// MIDDLEWARE
+
+app.use((req, res, next) => {
+  console.log('HELLO, I am custom middleware, every request passes through me')
+  console.log("Think: like a bouncer at a club")
+  console.log("Here is req", req.body)
+  next() // this sends the request on to the next step in the process
+})
+// set up static assets (images/css/client-side JS/etc)
+app.use(express.static('public'))
+// this will parse the data and create the "req.body" object
+app.use(express.urlencoded({extended: true}));
 
 // SET UP INDEX ROUTE
 	// this route will display a list of the colleges in the array
@@ -53,26 +68,7 @@ app.get('/colleges/new', (req, res)=>{
 	res.render('new.ejs')
 })
 
-// SET UP CREATE ROUTE
-	// this route will allow us to push the new college into the list!
-app.post('/colleges', (req, res)=>{
-	console.log(req.body)
-	colleges.push(req.body)
-	res.redirect('/colleges')
-})
 
-// SET UP DELETE ROUTE
-app.delete('/colleges/:indexOfCollegesArray', (req, res)=>{
-	colleges.findByIdAndRemove(req.params.indexOfCollegesArray, (err, data)=>{
-		if (err) {
-			console.log(err)
-		} else {
-			console.log(data)
-			res.redirect('/colleges')
-		}
-	})
-	//res.redirect('/colleges')
-})
 
 // SET UP SHOW ROUTE
 	// this route will show the information of just one of the items in the list
@@ -84,8 +80,27 @@ app.get('/colleges/:indexOfCollegesArray', (req, res)=>{
 	})
 })
 
+// SET UP CREATE ROUTE
+	// this route will allow us to push the new college into the list!
+app.post('/colleges', (req, res)=>{
+	console.log(req.body)
+	colleges.push(req.body)
+	res.redirect('/colleges')
+})
 
 
+// SET UP DELETE ROUTE
+// app.delete('/colleges/:indexOfCollegesArray', (req, res)=>{
+// 	colleges.findByIdAndRemove(req.params.indexOfCollegesArray, (err, data)=>{
+// 		if (err) {
+// 			console.log(err)
+// 		} else {
+// 			console.log(data)
+// 			res.redirect('/colleges')
+// 		}
+// 	})
+// 	//res.redirect('/colleges')
+// })
 
 
 
