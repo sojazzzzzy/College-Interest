@@ -1,27 +1,84 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Mate+SC&display=swap');
+
+      .flexbox-container {
+        display: flex;
+      }
+
+      .flexbox-item-form {
+        /*background: red;*/
+        padding-top: 20px;
+        padding-left: 20px;
+        margin-top: 20px;
+        font-family: 'Mate SC', serif;
+      }
+
+      h1{
+        color: red;
+        text-align: center;
+        font-family: 'Mate SC', serif; 
+        font-size: 30px;
+      }
+    </style>
     <meta charset="utf-8">
     <title>New College Form</title>
   </head>
   <body>
-  	<h1>New College Form Page</h1>
-  	<form action="/colleges" method="POST">
+  <div class="flexbox-container">	
+    <div class="flexbox-item flexbox-item-header"><h1>Add New College</h1>
+    </div>
+
+  	<div class="flexbox-item flexbox-item-form">
+      <form action="/colleges" method="POST">
   		<label for="name">School Name</label>
   		<input type="text" name="name" id="name"/>
+
+      <br>
+      <br>
+
   		<label for="location">City,State</label>
   		<input type="text" name="location" id="location"/>
-  		<label for="cost">Cost Per Semester</label>
+
+      <br>
+      <br>
+
+  		<label for="cost">Cost Per Semester  $</label>
   		<input type="text" name="cost" id="cost"/>
+
+      <br>
+      <br>
+
   		<label for="programsOfInterest">Programs of Interest</label>
   		<input type="text" name="programsOfInterest" id="programsOfInterest"/>
+
+      <br>
+      <br>
+
   		<label for="hasApplied">Student Has Applied</label>
   		<input type="checkbox" name="hasApplied" id="hasApplied"/>
   		<label for="hasBeenAccepted">Student Has Been Accepted</label>
   		<input type="checkbox" name="hasBeenAccepted" id="hasBeenAccepted"/>
+
+      <br>
+      <br>
+
   		<input type="submit" value="Add College">
   	</form>
+  </div>
+  </div>
   </body>
 </html>
 
+<br>
+<br>
+<br>
+ <a href="/colleges">View All Colleges</a>
+
+
+<br>
+<br>
+<br>
 <%- include('./partials/footer.ejs') %>

@@ -1,7 +1,7 @@
 
 <main>
 
-  <h4>Edit Colleges <%= college.name %> </h4>
+  <h1>Edit <%= college.name %> </h1>
   <form method="POST" action="/colleges/<%= college.id %>?_method=PUT">
     <!-- NOTE: the form is pre-populated with values from the server  -->
     
@@ -11,17 +11,25 @@
       <input type="text" name="name" value="<%=college.name%>" />
     </label>
     
+    <br>
+    <br>
+
     <label>
       <span>Location:</span>
       <input type="text" name="location" value="<%=college.location%>" />
     </label>
+
+    <br>
+    <br>
 
      <label>
       <span>Program of Interest:</span>
       <input type="text" name="programsOfInterest" value="<%=college.programsOfInterest%>" />
     </label>
 
-    
+    <br>
+    <br>
+
     <label>
       <input type="checkbox" name="hasApplied" 
       <% if (college.hasApplied) { %>
@@ -39,7 +47,7 @@
       <% } %>
       />
 
-      <span>Student Has Been Accepted!:</span>
+      <span>Student Has Been Accepted:</span>
     </label>
     <br>
     <br>
@@ -49,4 +57,15 @@
     </form>
 </main>
 
+<br>
+<br>
+<br>
+ <a href="/colleges">View All Colleges</a>
+<br>
+ <a href="/colleges/new">Add a New College to Your List</a> 
+
+
+<br>
+<br>
+<br>
 <%- include('./partials/footer.ejs') %>

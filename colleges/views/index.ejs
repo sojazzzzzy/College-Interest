@@ -1,19 +1,88 @@
+  <head>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Mate+SC&display=swap');
+
+      .flexbox-container {
+        display: flex;
+      }
+
+      .header{
+        background: white;
+      }
+      h1{
+        color: red;
+        text-align: center;
+        font-family: 'Mate SC', serif; 
+        font-size: 40px;
+      }
+
+      .listOfColleges {
+        /*background: #7999f2;*/
+        padding: 10px;
+        margin: 10px;
+
+      }
+
+      .collegeName {
+        color: red;
+        font-family: 'Mate SC', serif;
+      }
+
+
+      li {
+        font-size: 20px;
+      }
+      a {
+        color: black;
+      }
+
+      footer {
+        text-align: center;
+      }
+    </style>
+    <meta charset="utf-8" />
+    <title>Colleges Index</title>
+  </head>
+
+
 <main>
-  <h1>College Index Page</h1>
-  <nav>
-    <a href="/colleges/new">Add a New College to Your List</a>
-  </nav>
-  <ul>
+  <div class='flexbox-container'>
+  <div class='flexbox-item flexbox-item-header'>
+    <h1>Colleges of Interest</h1>
+  </div>
+  
+  <div class="listOfColleges">
+    <ul>
     <% for(let i = 0; i < colleges.length; i++) { %>
     <li>
-      <a href="/colleges/<%=colleges[i].id%>"> <%= colleges[i].name %></a>
-      <br><a href="/colleges/<%=colleges[i].id%>/edit">Edit</a>
+      <div class="collegeName">
+        <a href="/colleges/<%=colleges[i].id%>"> <%= colleges[i].name %></a>
+      </div>
+      <br>
+
+      <div id="editLink">
+        <a href="/colleges/<%=colleges[i].id%>/edit">Edit</a>
+      </div>
       <form method="POST" action="/colleges/<%= colleges[i].id %>?_method=DELETE">
         <button>Delete</button>
        </form> 
     </li>
   <% } %>
   </ul>
-
-
+</div>
+</div>
 </main>
+
+<br>
+<br>
+<br>
+<!--  <a href="/colleges">View All Colleges</a> -->
+ <br>
+ <a href="/colleges/new">Add a New College to Your List</a>
+
+<br>
+<br>
+<br>
+<div class="footer">
+<%- include('./partials/footer.ejs') %>
+</div>
