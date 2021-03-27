@@ -1,0 +1,52 @@
+
+<main>
+
+  <h4>Edit Colleges <%= college.name %> </h4>
+  <form method="POST" action="/colleges/<%= college.id %>?_method=PUT">
+    <!-- NOTE: the form is pre-populated with values from the server  -->
+    
+
+    <label>
+      <span>Name:</span>
+      <input type="text" name="name" value="<%=college.name%>" />
+    </label>
+    
+    <label>
+      <span>Location:</span>
+      <input type="text" name="location" value="<%=college.location%>" />
+    </label>
+
+     <label>
+      <span>Program of Interest:</span>
+      <input type="text" name="programsOfInterest" value="<%=college.programsOfInterest%>" />
+    </label>
+
+    
+    <label>
+      <input type="checkbox" name="hasApplied" 
+      <% if (college.hasApplied) { %>
+        checked
+      <% } %>
+      />
+
+      <span>Student Has Applied:</span>
+    </label>
+
+     <label>
+      <input type="checkbox" name="hasBeenAccepted" 
+      <% if (college.hasBeenAccepted) { %>
+        checked
+      <% } %>
+      />
+
+      <span>Student Has Been Accepted!:</span>
+    </label>
+    <br>
+    <br>
+      
+      
+    <input type="submit" name="" value="Submit Changes"/>
+    </form>
+</main>
+
+<%- include('./partials/footer.ejs') %>

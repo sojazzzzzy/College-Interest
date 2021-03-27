@@ -1,27 +1,19 @@
-<!-- <!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8" />
-    <title>College Index</title>
-  </head> -->
-  <main>
-    <h1>College Index Page</h1>
-    <nav>
-      <a href="/colleges/new">Add a New College to Your List</a>
-    </nav>
-    <ul>
-      <% for(let i = 0; i < colleges.length; i++) { %>
-        <li>
-          <a href="/colleges/<%colleges[i].indexOfCollegesArray%>"> <%= colleges[i].name %></a>
-          <form method="POST" action="/colleges/<%= colleges[i].indexOfCollegesArray %>?_method=DELETE">
-            <button>Delete</button>
-          </form>
-        </li>
-      <% } %>
-        
-  </main>
-<!-- </html> -->
+<main>
+  <h1>College Index Page</h1>
+  <nav>
+    <a href="/colleges/new">Add a New College to Your List</a>
+  </nav>
+  <ul>
+    <% for(let i = 0; i < colleges.length; i++) { %>
+    <li>
+      <a href="/colleges/<%=colleges[i].id%>"> <%= colleges[i].name %></a>
+      <br><a href="/colleges/<%=colleges[i].id%>/edit">Edit</a>
+      <form method="POST" action="/colleges/<%= colleges[i].id %>?_method=DELETE">
+        <button>Delete</button>
+       </form> 
+    </li>
+  <% } %>
+  </ul>
 
 
-
-<%- include('./partials/footer.ejs') %>
+</main>

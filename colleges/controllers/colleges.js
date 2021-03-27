@@ -31,7 +31,7 @@ router.get('/seed', (req, res)=> {
 			name:'Clark Atlanta University',
 			location: 'Atlanta, GA',
 			cost: '$70,000',
-			programsOfInterest: ['Psychology','Sociology'],
+			programsOfInterest: 'Sociology',
 			hasApplied: false,
 			hasBeenAccepted: false
 		},
@@ -39,7 +39,7 @@ router.get('/seed', (req, res)=> {
 			name:'Spelman College',
 			location: 'Atlanta, GA',
 			cost: '$90,000',
-			programsOfInterest: ['Psychology','Sociology'],
+			programsOfInterest: 'Psychology',
 			hasApplied: false,
 			hasBeenAccepted: false
 		}, 
@@ -47,7 +47,7 @@ router.get('/seed', (req, res)=> {
 			name:'Howard University',
 			location: 'Washington D.C.',
 			cost: '$90,000',
-			programsOfInterest: ['Psychology','Sociology'],
+			programsOfInterest: 'Psychology',
 			hasApplied: false,
 			hasBeenAccepted: false
 		} 
@@ -61,11 +61,11 @@ router.get('/seed', (req, res)=> {
 })
 
 
-// FRUITS SHOW ROUTE
+// COLLEGES SHOW ROUTE
 
-router.get('/indexOfCollegesArray', (req, res)=> {
-	Colleges.findById(req.params.indexOfCollegesArray, (err, foundColleges)=>{
-		res.render('show.ejs', {college: foundColleges})
+router.get('/:id', (req, res)=> {
+	Colleges.findById(req.params.id, (err, foundCollege)=>{
+		res.render('show.ejs', {college: foundCollege})
 	})
 })
 
@@ -85,12 +85,12 @@ router.post('/', (req, res) => {
 		req.body.hasBeenAccepted = false
 	}
 
-	Colleges.create(req.body, (error, createdColleges) =>{
+	Colleges.create(req.body, (error, createdCollege) =>{
 		if (error) {
 			console.log(error)
 			res.send(error)
 		} else {
-			console.log(createdColleges)
+			console.log(createdCollege)
 			res.redirect('/colleges')
 		}
 	})
@@ -98,12 +98,12 @@ router.post('/', (req, res) => {
 
 
 // SET UP DELETE ROUTE
-router.delete('/colleges/:indexOfCollegesArray', (req, res)=>{
-	Colleges.findByIdAndRemove(req.params.indexOfCollegesArray, (err, data)=>{
+router.delete('/:id', (req, res)=>{
+	Colleges.findByIdAndRemove(req.params.id, (err, data)=>{
 		if (err) {
 			console.log(err)
 		} else {
-			console.log(data)
+			//console.log(data)
 			res.redirect('/colleges')
 		}
 	})
@@ -112,17 +112,17 @@ router.delete('/colleges/:indexOfCollegesArray', (req, res)=>{
 
 
 // EDIT ROUTE
-router.get('/indexOfCollegesArray/edit', (req,res)=>{
-	Colleges.findById(req.params.indexOfCollegesArray, (err, foundColleges)=>{
+router.get('/:id/edit', (req,res)=>{
+	Colleges.findById(req.params.id, (err, foundCollege)=>{
 		res.render('edit.ejs', {
-			colleges: foundColleges
+			college: foundCollege,
 		})
 	})
 })
 
 // UPDATE ROUTE
 
-router.put('/indexOfCollegesArray', (req, res)=> {
+router.put('/:id', (req, res)=> {
 	if (req.body.hasApplied === "on") {
 		req.body.hasApplied = true
 	} else {
@@ -134,7 +134,11 @@ router.put('/indexOfCollegesArray', (req, res)=> {
 	} else {
 		req.body.hasBeenAccepted = false
 	}
-	Colleges.findByIdAndUpdate(req.params.indexOfCollegesArray, req.body, {new: true}, (err, updatedColleges)=>{
+	Colleges.findByIdAndUpdate(
+		req.params.id, 
+		req.body, 
+		{new: true}, 
+		(err, updatedCollege)=>{
 		res.redirect('/colleges')
 	})
 })
