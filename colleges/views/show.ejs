@@ -1,8 +1,44 @@
-<main>
+<!DOCTYPE html>
+<html>
+<style>
 
+  @import url('https://fonts.googleapis.com/css2?family=Mate+SC&display=swap');
+
+  .flexbox-container {
+    display: flex;
+  }
+
+  .flexbox-item-header {
+    font-family: 'Mate SC', serif;
+    color: red;
+  }
+
+  .flexbox-item-header2 {
+    font-family: 'Mate SC', serif;
+    padding-top: 20px;
+    padding-left: 20px;
+    margin-top: 20px;
+  }
+
+</style>
+<head>
+  <title>College Show Page</title>
+</head>
+<body>
+<main>
+  <div class='flexbox-container'>
+  <div class='flexbox-item flexbox-item-header'>
   <h1><%= college.name%></h1>
+</div>
+ <div class='flexbox-item flexbox-item-header2'>
+  <h2><%= college.name%> is located in <%= college.location%> and costs $<%= college.cost%> per semester to attend.</h2>
+
+  <br>
+  <h3>student has applied to school: <%= college.hasApplied%></h3>
   
-  
+  <h3>student has been accepted to school: <%= college.hasBeenAccepted%> </h3>
+</div>
+
 
 </main>
 <br>
@@ -16,4 +52,8 @@
 <br>
 <br>
 <%- include('./partials/footer.ejs') %>
+</body>
+</html>
+
+
 
